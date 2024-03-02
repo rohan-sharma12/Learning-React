@@ -6,7 +6,7 @@
 
 - After updating the Virtual DOM, React performs a process called "reconciliation" to determine the difference between the previous Virtual DOM and the updated one.
 
--Once React knows which parts of the Virtual DOM need to be updated, it applies these changes to the real DOM in an efficient manner, minimizing the number of DOM manipulations needed.
+- Once React knows which parts of the Virtual DOM need to be updated, it applies these changes to the real DOM in an efficient manner, minimizing the number of DOM manipulations needed.
 
 - The Virtual DOM helps React achieve better performance by reducing the frequency of expensive DOM operations, such as reflows and repaints, resulting in smoother user experiences.
 
@@ -36,4 +36,6 @@
 
 - Reconciliation ensures that the UI stays in sync with the application state, providing a responsive and interactive user experience while minimizing unnecessary DOM manipulations.
 
--In summary, the Virtual DOM, React Fiber, and Reconciliation are integral parts of React's rendering process, working together to optimize performance, enable advanced features, and provide a smooth and responsive user experience in React applications.
+- In summary, the Virtual DOM, React Fiber, and Reconciliation are integral parts of React's rendering process, working together to optimize performance, enable advanced features, and provide a smooth and responsive user experience in React applications.
+
+Read this article: https://github.com/acdlite/react-fiber-architecture
