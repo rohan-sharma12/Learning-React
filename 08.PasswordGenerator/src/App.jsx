@@ -10,7 +10,11 @@ function App() {
 
   const passwordRef = useRef()
 
+
   const copyTextToClipboard = useCallback(() => {
+    passwordRef.current?.select()  //Shows the current password is selected visually, it's just for better User Experience
+    passwordRef.current?.setSelectionRange(0, length) //Was'nt needed here as we want the compete length of password to be shown as selected
+
     window.navigator.clipboard.writeText(password)  //NextJS doesn't have this window object
   }, [password])
 
