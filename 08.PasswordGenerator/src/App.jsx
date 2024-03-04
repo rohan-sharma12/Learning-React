@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 
 import './App.css'
 
@@ -7,6 +7,12 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false)
   const [charAllowed, setCharAllowed] = useState(false)
   const [password, setPassword] = useState("")
+
+  const passwordRef = useRef()
+
+  const copyTextToClipboard = useCallback(() => {
+    window.navigator.clipboard.writeText(password)  //NextJS doesn't have this window object
+  }, [password])
 
 
   const passwordGenerator = useCallback(() => {
@@ -19,7 +25,7 @@ function App() {
 
     for(let i = 0; i < length; i++){
       let char = Math.floor(Math.random() * str.length + 1)
-      pass = str.charAt(char)
+      pass = pass + str.charAt(char)
     }
 
     setPassword(pass)
@@ -27,7 +33,13 @@ function App() {
 
    ,[length, numberAllowed, charAllowed, setPassword])
 
+    useEffect(() => {
+      passwordGenerator()
+    }, [length, charAllowed, numberAllowed, setPassword]) 
 
+    /* This useEffect hook is calling the passwordGenerator function whenever any of the dependencies (length, charAllowed, numberAllowed, 
+      or setPassword) change. This ensures that the password generation logic is executed whenever these values are updated, keeping the 
+      generated password in sync with any changes in the component's state. */
 
   return (
     <>
@@ -42,10 +54,13 @@ function App() {
           value={password}
           className='outline-none w-full py-1 px-3'
           placeholder='Password'
-          readOnly>
+          ref ={passwordRef}
+          readOnly
+          >
         </input>
 
         <button
+        onClick={copyTextToClipboard}
         className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'>
           Copy
         </button>
